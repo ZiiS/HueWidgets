@@ -4,6 +4,7 @@ package is.zi.huewidgets;
 import android.accounts.Account;
 import android.accounts.AccountManager;
 import android.content.Intent;
+import android.os.Build;
 import android.os.IBinder;
 import android.preference.PreferenceManager;
 import android.util.Log;
@@ -57,12 +58,19 @@ public class PopupActivityTest {
     @NonNull
     @Rule
     final public ActivityTestRule<PopupActivity> activityRule = new ActivityTestRule<PopupActivity>(PopupActivity.class, true) {
+
         @Override
         protected void afterActivityFinished() {
-            AccountManager.get(ApplicationProvider.getApplicationContext()).removeAccountExplicitly(new Account(
+            AccountManager accountManager = AccountManager.get(ApplicationProvider.getApplicationContext());
+            Account account = new Account(
                     "TestAccount",
                     AccountAuthenticatorService.ACCOUNT_TYPE
-            ));
+            );
+            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP_MR1) {
+                accountManager.removeAccount(account, null, null);
+            } else {
+                accountManager.removeAccountExplicitly(account);
+            }
         }
 
         @Override

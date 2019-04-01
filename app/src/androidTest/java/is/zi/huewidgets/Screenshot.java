@@ -10,15 +10,19 @@ import java.io.IOException;
 class Screenshot {
     Screenshot(Context context, String name) throws IOException, InterruptedException {
         Thread.sleep(100);
-        try (
-                FileOutputStream out = new FileOutputStream(
-                        new File(
-                                context.getExternalFilesDir(null),
-                                name + ".png"
-                        )
-                )
-        ) {
-            androidx.test.runner.screenshot.Screenshot.capture().getBitmap().compress(Bitmap.CompressFormat.PNG, 100, out);
+        Bitmap bitmap = androidx.test.runner.screenshot.Screenshot.capture().getBitmap();
+        if(bitmap != null) {
+            //Can't get working on Travis-Ci
+            try (
+                    FileOutputStream out = new FileOutputStream(
+                            new File(
+                                    context.getExternalFilesDir(null),
+                                    name + ".png"
+                            )
+                    )
+            ) {
+                bitmap.compress(Bitmap.CompressFormat.PNG, 100, out);
+            }
         }
     }
 }
