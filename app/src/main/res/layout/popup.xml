@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<is.zi.hue.HueColorPicker xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/lightColor"
+    android:layout_width="256dp"
+    android:layout_height="280dp" />

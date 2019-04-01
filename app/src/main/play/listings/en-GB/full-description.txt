@@ -1,0 +1,3 @@
+Control Hue lights and groups from home screen shortcuts, app widgets, and a quick settings tile.
+Tight Android integration providing the fastest way to take control of your lights.
+Accurately set chromaticity and brightness.

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Hue</string>
+    <string name="app_title">Hue Widgets</string>
+    <string name="instructions">Press the physical button on the Bridge you want to use.</string>
+    <string name="error_title">Failed</string>
+    <string name="error_bridge">Error communicating with Hue Bridge.</string>
+    <string name="error_no_wifi">Wifi needed to connect to Hue Bridge</string>
+    <string name="error_account">Error retrieving account.</string>
+    <string name="add_account">Bridge</string>
+    <string name="add_shortcut">Shortcut</string>
+    <string name="thank_you">Thank you</string>
+</resources>

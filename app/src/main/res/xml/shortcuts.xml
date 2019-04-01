@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shortcuts xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:targetApi="n_mr1">
+    <shortcut
+        android:icon="@android:drawable/ic_input_add"
+        android:shortcutId="account"
+        android:shortcutShortLabel="@string/add_account">
+        <intent
+            android:action="android.intent.action.MAIN"
+            android:targetClass="is.zi.hueaccounts.AuthenticatorActivity"
+            android:targetPackage="is.zi.huewidgets" />
+        <categories android:name="android.shortcut.conversation" />
+    </shortcut>
+    <shortcut
+        android:icon="@android:drawable/ic_input_add"
+        android:shortcutId="shortcut"
+        android:shortcutShortLabel="@string/add_shortcut">
+        <intent
+            android:action="android.intent.action.MAIN"
+            android:targetClass="is.zi.huewidgets.ConfigureActivity"
+            android:targetPackage="is.zi.huewidgets" />
+        <categories android:name="android.shortcut.conversation" />
+    </shortcut>
+</shortcuts>

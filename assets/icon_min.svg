@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   height="48"
+   version="1.1"
+   viewBox="0 0 12.7 12.7"
+   width="48"
+   inkscape:version="0.92.3 (2405546, 2018-03-11)"
+   sodipodi:docname="icon_min.svg"
+   id="svg871">
+  <title
+     id="title4666">is.zi.HueWidgets</title>
+  <defs
+     id="defs2" />
+  <sodipodi:namedview
+     bordercolor="#666666"
+     borderopacity="1.0"
+     gridtolerance="10"
+     id="base"
+     pagecolor="#dee421"
+     showgrid="true"
+     showguides="false"
+     units="px"
+     inkscape:current-layer="svg871"
+     inkscape:cx="-23.002781"
+     inkscape:cy="67.167049"
+     inkscape:document-units="px"
+     inkscape:guide-bbox="true"
+     inkscape:measure-end="68,104"
+     inkscape:measure-start="24,124"
+     inkscape:pagecheckerboard="false"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-height="1030"
+     inkscape:window-maximized="1"
+     inkscape:window-width="1916"
+     inkscape:window-x="2"
+     inkscape:window-y="25"
+     inkscape:zoom="5.6568542" />
+  <path
+     style="fill:#ffffff;stroke:none;stroke-width:1.00291717;stroke-linecap:round;stroke-linejoin:round"
+     d="M 6.3500227,1.574933e-4 C 1.8916715,0.03135369 0.90092816,4.5726092 4.8639061,8.6361232 v 1.8675708 c -0.00374,0.340267 0.1392653,0.650845 0.4948886,0.671135 h 0.4992425 l -0.795789,0.611115 c -0.3786317,0.292952 -0.1777808,0.911462 0.2965465,0.913199 h 1.9819722 c 0.6933607,0.03559 0.6933607,-1.049972 0,-1.014391 H 6.8434603 l 0.7953041,-0.611115 c 0.1237498,-0.09626 0.1962844,-0.246484 0.195924,-0.405756 h 0.00141 V 8.6361232 C 11.799071,4.5726092 10.808327,-0.0310195 6.3499759,1.574933e-4 Z M 6.1666767,1.7913392 c 0.1341493,-0.00239 0.2635038,0.05113 0.3584673,0.1483143 L 7.925635,3.3776588 C 8.4249965,3.8558778 7.6920194,4.6074513 7.2256315,4.0954212 L 6.8763552,3.7377802 7.0151955,4.7422499 C 7.0843011,5.2267245 6.510616,5.521014 6.1739327,5.1738002 5.7068867,4.6949093 5.2404793,4.2146803 4.7734426,3.7357951 4.3064509,3.256957 5.0069384,2.5386984 5.4739301,3.0175375 5.5908433,3.1374157 5.7082291,3.2577787 5.8251404,3.3776588 L 5.6838821,2.3707078 C 5.6418309,2.0679147 5.8684311,1.7959857 6.1666767,1.7913392 Z"
+     id="bulb"
+     inkscape:connector-curvature="0"
+     sodipodi:nodetypes="ccccccccccccccccccccccscccc" />
+  <metadata
+     id="metadata4664">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:title>is.zi.HueWidgets</dc:title>
+        <dc:rights>
+          <cc:Agent>
+            <dc:title>©2019 All rights reserved</dc:title>
+          </cc:Agent>
+        </dc:rights>
+        <dc:creator>
+          <cc:Agent>
+            <dc:title>Zi.iS</dc:title>
+          </cc:Agent>
+        </dc:creator>
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+</svg>
