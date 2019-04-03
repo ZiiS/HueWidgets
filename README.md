@@ -14,3 +14,8 @@ Android App for controling Philips Hue Lighting.
 #### Color
 
 Directly sets the CIE xyY value, displaying the bulbs reported gamut.
+
+#### Donate
+
+[![Donate using Liberapay](https://liberapay.com/assets/widgets/donate.svg)](https://liberapay.com/ZiiS/donate)
+Bitcoin: 1FdGg777eP4cqMrJVMRQiMXEHE2Ee6F62T
