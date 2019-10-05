@@ -136,7 +136,7 @@ public class Coffee extends android.app.Fragment {
         if (requestCode == Coffee.REQUEST_CODE && resultCode == Activity.RESULT_OK) {
             String purchaseData = data.getStringExtra("INAPP_PURCHASE_DATA");
             try {
-                JSONObject jo = new JSONObject(purchaseData);
+                JSONObject jo = new JSONObject(Objects.requireNonNull(purchaseData));
                 String sku = jo.getString("productId");
                 if (sku.equals(itemCode)) {
                     Objects.requireNonNull(getView()).findViewById(R.id.coffee).setVisibility(View.GONE);

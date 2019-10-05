@@ -103,7 +103,6 @@ public class HueBridgeService extends Service {
         this.onAlertListener = onAlertListener;
     }
 
-    @SuppressWarnings("deprecation")
     private void withAccount(@NonNull OnListener<Account> withAccount) {
         Account[] accounts = Objects.requireNonNull(am).getAccountsByType(AccountAuthenticatorService.ACCOUNT_TYPE);
         if (accounts.length == 0) {
