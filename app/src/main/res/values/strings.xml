@@ -10,4 +10,6 @@
     <string name="add_account">Bridge</string>
     <string name="add_shortcut">Shortcut</string>
     <string name="thank_you">Thank you</string>
+    <string name="add">Add</string>
+    <string name="add_prompt">Enter IP address</string>
 </resources>
