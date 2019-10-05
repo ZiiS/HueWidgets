@@ -40,7 +40,6 @@ public class MainActivity extends Activity {
     }
 
     @Override
-    @SuppressWarnings("deprecation")
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         getFragmentManager().findFragmentById(R.id.fragment).onActivityResult(requestCode, resultCode, data);
     }

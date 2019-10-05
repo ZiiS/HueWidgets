@@ -21,6 +21,8 @@ import android.widget.ListView;
 
 import org.json.JSONException;
 
+import java.util.Objects;
+
 import is.zi.NonNull;
 import is.zi.hue.HueLight;
 
@@ -59,15 +61,14 @@ public class ConfigureActivity extends AlertActivity {
         hueBridgeService.getLights();
     }
 
-    @SuppressWarnings("deprecation")
-    private void installShortcut(@NonNull Intent intent, String id, @NonNull String name) {
+        private void installShortcut(@NonNull Intent intent, String id, @NonNull String name) {
         if (Build.VERSION.SDK_INT >= 26) {
             ShortcutInfo shortcut = new ShortcutInfo.Builder(this, id)
                     .setShortLabel(name)
                     .setIcon(Icon.createWithResource(this, R.mipmap.ic_launcher))
                     .setIntent(intent)
                     .build();
-            getSystemService(ShortcutManager.class).requestPinShortcut(shortcut, null);
+            Objects.requireNonNull(getSystemService(ShortcutManager.class)).requestPinShortcut(shortcut, null);
         } else {
             Intent installIntent = new Intent("com.android.launcher.action.INSTALL_SHORTCUT");
             installIntent.putExtra(Intent.EXTRA_SHORTCUT_NAME, name);

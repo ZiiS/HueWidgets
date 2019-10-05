@@ -14,6 +14,7 @@ import java.net.URL;
 import java.security.cert.X509Certificate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import javax.xml.xpath.XPathExpressionException;
 
@@ -26,7 +27,7 @@ public class HueBridge {
     @NonNull
     private final URL url;
     @Nullable
-    public String name = null;
+    protected String name = null;
     @Nullable
     private Bitmap icon = null;
     @Nullable
@@ -205,7 +206,7 @@ public class HueBridge {
                 throw new NotFoundException(e);
             } catch (IOException e) {
                 if (
-                        e.getMessage().equals("Network is unreachable")
+                        Objects.requireNonNull(e.getMessage()).equals("Network is unreachable")
                                 || e.getCause() instanceof android.system.ErrnoException
                 ) {
                     throw new NoWifiException(e);
