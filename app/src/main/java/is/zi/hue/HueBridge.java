@@ -194,11 +194,15 @@ public class HueBridge {
                 while (true) {
                     HttpMU.Response reply = upnp.read();
                     Log.d("Bridge", "uPnP " + reply.source + " replied: " + reply.message);
-                    HueBridge newBridge = new HueBridge("https://" + reply.source);
-                    if (!ignore.contains(newBridge)) {
-                        Log.d("Bridge", "uPnP found new bridge " + reply.source);
-                        newBridge.load();
-                        return newBridge;
+                    if(reply.message.contains(" IpBridge/")) {
+                        HueBridge newBridge = new HueBridge("https://" + reply.source);
+                        if (!ignore.contains(newBridge)) {
+                            Log.d("Bridge", "uPnP found new bridge " + reply.source);
+                            newBridge.load();
+                            return newBridge;
+                        }
+                    } else {
+                            Log.d("Bridge", "uPnP non-bridge " + reply.source);
                     }
                 }
             } catch (java.net.SocketTimeoutException e) {
