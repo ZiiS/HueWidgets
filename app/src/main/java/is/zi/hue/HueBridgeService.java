@@ -446,8 +446,11 @@ public class HueBridgeService extends Service {
 
         @NonNull
         @Override
-        protected HueLight[] doInBackgroundWithBridge(@NonNull HueBridge hueBridge) throws Http.HttpException, Http.ApplicationLayerException, JSONException, IOException {
-            return hueBridge.getLights();
+        protected HueLight[] doInBackgroundWithBridge(@Nullable HueBridge hueBridge) throws Http.HttpException, Http.ApplicationLayerException, JSONException, IOException {
+            if(hueBridge != null) {
+                return hueBridge.getLights();
+            }
+            return null;
         }
     }
 
@@ -463,6 +466,14 @@ public class HueBridgeService extends Service {
 
         private GetToken(@Nullable OnListener<HueBridge> onComplete, @Nullable OnListener<Integer> onFail, @NonNull AccountManager am, @Nullable Account account, @NonNull HueBridge.Factory bridgeFactory) {
             super(onComplete, onFail);
+            this.bridgeFactory = bridgeFactory;
+            if(account.type != AccountAuthenticatorService.ACCOUNT_TYPE){
+                // Not sure why this happens
+                url = null;
+                token = null;
+                cert = null;
+                return;
+            }
             //Don't hold am
             url = am.getUserData(account, AccountAuthenticatorService.KEY_URL);
 
@@ -474,7 +485,6 @@ public class HueBridgeService extends Service {
                     null,
                     null
             );
-            this.bridgeFactory = bridgeFactory;
             X509Certificate cert1;
             try {
                 cert1 = (X509Certificate) CertificateFactory.getInstance("X.509").generateCertificate(
@@ -495,16 +505,18 @@ public class HueBridgeService extends Service {
         @Nullable
         @Override
         protected HueBridge doInBackground(Void... voids) {
-            try {
-                return bridgeFactory.create(
-                        url,
-                        Objects.requireNonNull(token.getResult().getString(AccountManager.KEY_AUTHTOKEN)),
-                        cert
-                );
+            if(bridgeFactory != null && token != null) {
+                try {
+                    return bridgeFactory.create(
+                            url,
+                            Objects.requireNonNull(token.getResult().getString(AccountManager.KEY_AUTHTOKEN)),
+                            cert
+                    );
 
-            } catch (@NonNull IOException | AuthenticatorException | OperationCanceledException e) {
-                error = R.string.error_account;
-                Log.e("GetToken", "", e);
+                } catch (@NonNull IOException | AuthenticatorException | OperationCanceledException e) {
+                    error = R.string.error_account;
+                    Log.e("GetToken", "", e);
+                }
             }
             return null;
         }
