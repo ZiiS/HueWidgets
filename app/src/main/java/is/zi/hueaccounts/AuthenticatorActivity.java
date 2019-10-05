@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 
@@ -113,6 +114,9 @@ public class AuthenticatorActivity extends AlertActivity {
 
         setContentView(R.layout.bridge_list);
 
+        findViewById(R.id.ip_add).setOnClickListener(event -> {
+            hueBridgeService.addBridge("https://" + ((EditText)findViewById(R.id.ip)).getText().toString());
+        });
         super.onCreate(savedInstanceState);
     }
 

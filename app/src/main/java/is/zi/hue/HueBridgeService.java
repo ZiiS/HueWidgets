@@ -23,6 +23,7 @@ import org.json.JSONException;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.net.URL;
 import java.security.cert.CertificateException;
 import java.security.cert.CertificateFactory;
 import java.security.cert.X509Certificate;
@@ -237,6 +238,10 @@ public class HueBridgeService extends Service {
         new GetBridge(this::onBridge, this::onAlert, bridges, bridgeFactory).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
     }
 
+    public void addBridge(String url) {
+        new AddBridge(this::onBridge, this::onAlert, url).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+    }
+
     private void onPair(@Nullable HueBridge hueBridge) {
         if (onPairListener != null) {
             onPairListener.on(hueBridge);
@@ -336,6 +341,31 @@ public class HueBridgeService extends Service {
         }
 
     }
+
+    private static class AddBridge extends AsyncTaskGet<Void, HueBridge> {
+        private final String url;
+
+        private AddBridge(OnListener<HueBridge> onComplete, OnListener<Integer> onFail, String url) {
+            super(onComplete, onFail);
+            this.url = url;
+        }
+
+        @Nullable
+        @Override
+        protected HueBridge doInBackground(Void... voids) {
+            try {
+                HueBridge bridge = new HueBridge(url);
+                bridge.load();
+                return bridge;
+            } catch (@NonNull IOException | Http.HttpException | XPathExpressionException e) {
+                error = R.string.error_bridge;
+                Log.e("AddBridge", "", e);
+            }
+            return null;
+        }
+
+    }
+
 
     private static class GetPair extends AsyncTaskGet<Void, HueBridge> {
         private final ArrayList<HueBridge> known;
