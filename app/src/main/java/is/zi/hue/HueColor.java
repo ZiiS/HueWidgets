@@ -17,11 +17,20 @@ public class HueColor {
     final public float y;
 
     HueColor(@NonNull JSONObject json) throws JSONException {
-        JSONArray xy = json.getJSONArray("xy");
-        x = (float) xy.getDouble(0);
-        y = (float) xy.getDouble(1);
+        if (json.has("xy")) {
+            JSONArray xy = json.getJSONArray("xy");
+            x = (float) xy.getDouble(0);
+            y = (float) xy.getDouble(1);
+        } else {
+            x = 0.32f;
+            y = 0.32f;
+        }
         if (json.getBoolean("on")) {
-            bri = json.getInt("bri");
+            if (json.has("bri")) {
+                bri = json.getInt("bri");
+            } else {
+                bri = 255;
+            }
         } else {
             bri = 0;
         }
