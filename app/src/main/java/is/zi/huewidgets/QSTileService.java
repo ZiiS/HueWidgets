@@ -42,6 +42,7 @@ public class QSTileService extends android.service.quicksettings.TileService {
 
     @Override
     public void onTileRemoved() {
+        //noinspection deprecation
         PreferenceManager.getDefaultSharedPreferences(
                 getApplicationContext()
         ).edit().remove("light_-1").apply();
@@ -91,6 +92,7 @@ public class QSTileService extends android.service.quicksettings.TileService {
         unbindService(connection);
     }
 
+    @SuppressWarnings("deprecation")
     @Override
     public void onClick() {
         HueLight light;

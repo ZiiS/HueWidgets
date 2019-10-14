@@ -61,7 +61,7 @@ public class PopupActivityTest {
 
         @Override
         protected void afterActivityFinished() {
-            AccountManager accountManager = AccountManager.get(ApplicationProvider.getApplicationContext());
+            @SuppressWarnings("deprecation") AccountManager accountManager = AccountManager.get(ApplicationProvider.getApplicationContext());
             Account account = new Account(
                     "TestAccount",
                     AccountAuthenticatorService.ACCOUNT_TYPE
@@ -75,6 +75,7 @@ public class PopupActivityTest {
 
         @Override
         protected void beforeActivityLaunched() {
+            //noinspection deprecation
             PreferenceManager.getDefaultSharedPreferences(
                     ApplicationProvider.getApplicationContext()
             )

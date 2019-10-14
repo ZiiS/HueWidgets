@@ -16,12 +16,13 @@
 
         <EditText
             android:id="@+id/ip"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="3"
             android:digits="0123456789."
             android:hint="@string/add_prompt"
-            android:inputType="number"></EditText>
+            android:inputType="number"
+            android:importantForAutofill="no" />
 
         <Button
             android:id="@+id/ip_add"
