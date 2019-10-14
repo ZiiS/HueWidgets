@@ -112,7 +112,7 @@ public class ConfigureActivity extends AlertActivity {
         ListView view = findViewById(android.R.id.list);
 
         view.setOnItemClickListener((parent, view1, position, id) -> {
-            SharedPreferences.Editor prefs = PreferenceManager.getDefaultSharedPreferences(
+            @SuppressWarnings("deprecation") SharedPreferences.Editor prefs = PreferenceManager.getDefaultSharedPreferences(
                     getApplicationContext()
             ).edit();
             try {

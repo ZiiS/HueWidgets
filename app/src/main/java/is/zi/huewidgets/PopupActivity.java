@@ -48,6 +48,7 @@ public class PopupActivity extends AlertActivity {
                 AppWidgetManager.INVALID_APPWIDGET_ID);
 
         try {
+            //noinspection deprecation
             light = new HueLight(PreferenceManager.getDefaultSharedPreferences(
                     getApplicationContext()
             ).getString("light_" + mAppWidgetId, null));

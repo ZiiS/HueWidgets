@@ -34,7 +34,6 @@ import is.zi.NonNull;
 import is.zi.Nullable;
 import is.zi.huewidgets.R;
 
-@SuppressWarnings("deprecation")
 public class Coffee extends android.app.Fragment {
     private final static int REQUEST_CODE = 1042;
 

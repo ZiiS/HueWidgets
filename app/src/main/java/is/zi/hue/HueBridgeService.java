@@ -23,7 +23,6 @@ import org.json.JSONException;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
-import java.net.URL;
 import java.security.cert.CertificateException;
 import java.security.cert.CertificateFactory;
 import java.security.cert.X509Certificate;
@@ -40,6 +39,7 @@ import is.zi.hueaccounts.AccountAuthenticatorService;
 import is.zi.huewidgets.R;
 
 
+@SuppressWarnings("deprecation")
 public class HueBridgeService extends Service {
     @NonNull
     private final IBinder mBinder = new LocalBinder();
@@ -160,7 +160,7 @@ public class HueBridgeService extends Service {
     private void withBridge(OnListener<HueBridge> onBridgeListener) {
         if (am != null) {
             withAccount(account ->
-                    new GetToken(onBridgeListener, this::onAlert, am, account, bridgeFactory).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR)
+                    new GetToken(onBridgeListener, this::onAlert, am, Objects.requireNonNull(account), bridgeFactory).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR)
             );
         }
     }
@@ -289,7 +289,7 @@ public class HueBridgeService extends Service {
             super(onComplete, onFail);
         }
 
-        @NonNull
+        @Nullable
         abstract Return doInBackgroundWithBridge(HueBridge hueBridge) throws IOException, Http.HttpException, JSONException, Http.ApplicationLayerException;
 
         @Nullable
@@ -473,7 +473,7 @@ public class HueBridgeService extends Service {
             super(onComplete, onFail);
         }
 
-        @NonNull
+        @Nullable
         @Override
         protected HueLight[] doInBackgroundWithBridge(@Nullable HueBridge hueBridge) throws Http.HttpException, Http.ApplicationLayerException, JSONException, IOException {
             if(hueBridge != null) {
@@ -484,19 +484,20 @@ public class HueBridgeService extends Service {
     }
 
     private static class GetToken extends AsyncTaskGet<Void, HueBridge> {
-        @NonNull
+        @Nullable
         private final String url;
-        @NonNull
+        @Nullable
         private final AccountManagerFuture<Bundle> token;
         @NonNull
         private final HueBridge.Factory bridgeFactory;
         @Nullable
         private final X509Certificate cert;
 
-        private GetToken(@Nullable OnListener<HueBridge> onComplete, @Nullable OnListener<Integer> onFail, @NonNull AccountManager am, @Nullable Account account, @NonNull HueBridge.Factory bridgeFactory) {
+        private GetToken(@Nullable OnListener<HueBridge> onComplete, @Nullable OnListener<Integer> onFail, @NonNull AccountManager am, @NonNull Account account, @NonNull HueBridge.Factory bridgeFactory) {
             super(onComplete, onFail);
             this.bridgeFactory = bridgeFactory;
-            if(account.type != AccountAuthenticatorService.ACCOUNT_TYPE){
+            if(!account.type.equals(AccountAuthenticatorService.ACCOUNT_TYPE)){
+                Log.w("GetToken", "Unexpected account type " + account.type + " != " + AccountAuthenticatorService.ACCOUNT_TYPE);
                 // Not sure why this happens
                 url = null;
                 token = null;
@@ -534,10 +535,10 @@ public class HueBridgeService extends Service {
         @Nullable
         @Override
         protected HueBridge doInBackground(Void... voids) {
-            if(bridgeFactory != null && token != null) {
+            if(token != null) {
                 try {
                     return bridgeFactory.create(
-                            url,
+                            Objects.requireNonNull(url),
                             Objects.requireNonNull(token.getResult().getString(AccountManager.KEY_AUTHTOKEN)),
                             cert
                     );

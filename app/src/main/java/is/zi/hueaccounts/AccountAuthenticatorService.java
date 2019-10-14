@@ -42,6 +42,7 @@ public class AccountAuthenticatorService extends Service {
             mContext = context;
         }
 
+        @SuppressWarnings("deprecation")
         @NonNull
         @Override
         public Bundle addAccount(
@@ -58,6 +59,7 @@ public class AccountAuthenticatorService extends Service {
             return bundle;
         }
 
+        @SuppressWarnings("deprecation")
         @NonNull
         @Override
         public Bundle getAuthToken(

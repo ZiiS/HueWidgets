@@ -38,6 +38,7 @@ public class AuthenticatorActivity extends AlertActivity {
     }
 
 
+    @SuppressWarnings("deprecation")
     @Override
     protected void onServiceConnected() {
         assert hueBridgeService != null;
@@ -106,6 +107,7 @@ public class AuthenticatorActivity extends AlertActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
 
+        //noinspection deprecation
         mAccountAuthenticatorResponse =
                 getIntent().getParcelableExtra(AccountManager.KEY_ACCOUNT_AUTHENTICATOR_RESPONSE);
         if (mAccountAuthenticatorResponse != null) {
@@ -115,7 +117,8 @@ public class AuthenticatorActivity extends AlertActivity {
         setContentView(R.layout.bridge_list);
 
         findViewById(R.id.ip_add).setOnClickListener(event -> {
-            hueBridgeService.addBridge("https://" + ((EditText)findViewById(R.id.ip)).getText().toString());
+            if(hueBridgeService!=null)
+                hueBridgeService.addBridge("https://" + ((EditText)findViewById(R.id.ip)).getText().toString());
         });
         super.onCreate(savedInstanceState);
     }
